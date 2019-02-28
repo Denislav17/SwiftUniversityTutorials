@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  tutorialApplication
+//  testApplication
 //
-//  Created by Denislav Rofetov on 05/02/2019.
+//  Created by Denislav Rofetov on 28/02/2019.
 //  Copyright © 2019 Denislav Rofetov. All rights reserved.
 //
 
@@ -10,31 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    //sliders
-    @IBOutlet weak var sliderRed: UISlider!
-    @IBOutlet weak var sliderGreen: UISlider!
-    @IBOutlet weak var sliderBlue: UISlider!
-    
-    //labels
-    @IBOutlet weak var lblRed: UILabel!
-    @IBOutlet weak var lblGreen: UILabel!
-    @IBOutlet weak var lblBlue: UILabel!
+    @IBOutlet weak var btnIncrement: UIButton!
+    @IBOutlet weak var btnDecrement: UIButton!
+    @IBOutlet weak var btnMultiply4: UIButton!
+    @IBOutlet weak var txtValue: UITextField!  
+    @IBOutlet weak var btnOpenSecondPage: UIButton!
     
     
-    @IBOutlet weak var lblColourChange: UILabel!
     
-    
-    var colourMix: Colour?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
-        lblRed.text = "0"
-        lblGreen.text = "0"
-        lblBlue.text = "0"
-        
-        colourMix = Colour(red:0.0,green:0.0,blue:0.0)
+        txtValue.text = "0"
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,39 +29,36 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func RedValueChanged(_ sender: UISlider)
-    {
-    //updated lblRed
-    lblRed.text = String(format: "%.0f", sliderRed.value)
-    colourMix?._red = sliderRed.value
-    lblColourChange.backgroundColor = colourMix?.getColour()
-    
+    private func DisplayResult(_number: Int){
+        txtValue.text = String(_number)
     }
     
-    @IBAction func GreenValueChanged(_ sender: UISlider)
-    {
-        //updated lblGreen
-        lblGreen.text = String(format: "%.0f", sliderGreen.value)
-        colourMix?._green = sliderGreen.value
-        lblColourChange.backgroundColor = colourMix?.getColour()
+    @IBAction func btnIncremetValue(_ sender: Any) {
+        
+        var txtInteger = Int(txtValue.text!)
+        txtInteger = txtInteger! + 1
+        DisplayResult(_number: txtInteger!)
+    }
+    
+    @IBAction func btnDecrementValue(_ sender: Any) {
+        
+        var txtInteger = Int(txtValue.text!)
+        
+         txtInteger = txtInteger! - 1
+         DisplayResult(_number: txtInteger!)
+        
+    }
+    @IBAction func btnMultiplyby4(_ sender: Any) {
+        
+        var txtInteger = Int(txtValue.text!)
+        txtInteger = txtInteger! * 4
+        DisplayResult(_number: txtInteger!)
+    }
+    
+    @IBAction func btnOpenSecondPage_Clicked(_ sender: Any) {
+        
     }
     
     
-    @IBAction func BlueValueChanged(_ sender: UISlider)
-    {
-        //updated lblBlue
-        lblBlue.text = String(format: "%.0f", sliderBlue.value)
-        colourMix?._blue = sliderBlue.value
-        lblColourChange.backgroundColor = colourMix?.getColour()
-    }
-    
-    
-    
-    
-    
-    
-    
-
-
 }
 
